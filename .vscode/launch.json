@@ -1,0 +1,27 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug",
+            "type": "cortex-debug",
+            "request": "launch",
+            "runToEntryPoint": "main",
+            "showDevDebugOutput": false,
+            "servertype": "openocd",
+            "cwd": "${workspaceRoot}",
+            "interface": "swd",
+            "device": "STM32G473VE",
+
+            "executable": "${workspaceRoot}/build/SignalerExampleFreeRtos.elf",
+
+            // need to create system envirement variable CMAKE_NONE_EABI_STM32_TOOL_CHAIN
+            // CMAKE_NONE_EABI_STM32_TOOL_CHAIN : path/to/folder/of/tool_cain
+            "svdFile"     :   "${env:CMAKE_NONE_EABI_STM32_TOOL_CHAIN}/cmsis-svd/data/STMicro/STM32G473xx.svd",
+            "gdbPath"     :   "${env:CMAKE_NONE_EABI_STM32_TOOL_CHAIN}/eabi/bin/arm-none-eabi-gdb",
+            "configFiles" : [ "${workspaceRoot}/openocd.cfg", ],
+        }
+    ]
+}
